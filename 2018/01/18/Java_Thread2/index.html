@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>多线程(二) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="线程(二)单例设计模式
+单例设计模式：保证类在内存中只有一个对象。
+
+如何保证类在内存中只有一个对象呢？
+
+(1)控制类的创建，不让其他类来创建本类的对象。private
+(2)在本类中定义一个本类的对象。Singleton s;
+(3)提供公共的访问方式。  public static Singleton getInstance(){return s}
+
+
+单例写法三种：
+
+(1)饿汉式 开发用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程(二)">
+<meta property="og:url" content="http://yoursite.com/2018/01/18/Java_Thread2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线程(二)单例设计模式
+单例设计模式：保证类在内存中只有一个对象。
+
+如何保证类在内存中只有一个对象呢？
+
+(1)控制类的创建，不让其他类来创建本类的对象。private
+(2)在本类中定义一个本类的对象。Singleton s;
+(3)提供公共的访问方式。  public static Singleton getInstance(){return s}
+
+
+单例写法三种：
+
+(1)饿汉式 开发用">
+<meta property="og:updated_time" content="2018-01-18T05:20:32.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多线程(二)">
+<meta name="twitter:description" content="线程(二)单例设计模式
+单例设计模式：保证类在内存中只有一个对象。
+
+如何保证类在内存中只有一个对象呢？
+
+(1)控制类的创建，不让其他类来创建本类的对象。private
+(2)在本类中定义一个本类的对象。Singleton s;
+(3)提供公共的访问方式。  public static Singleton getInstance(){return s}
+
+
+单例写法三种：
+
+(1)饿汉式 开发用">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">John Doe</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ArrayList/" style="font-size: 10px;">ArrayList</a> <a href="/tags/C/" style="font-size: 12.5px;">C</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/FilenameFilter/" style="font-size: 10px;">FilenameFilter</a> <a href="/tags/File类/" style="font-size: 10px;">File类</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/HashSet/" style="font-size: 10px;">HashSet</a> <a href="/tags/IO流其他类/" style="font-size: 10px;">IO流其他类</a> <a href="/tags/JAVA/" style="font-size: 20px;">JAVA</a> <a href="/tags/LinkedHashSet/" style="font-size: 10px;">LinkedHashSet</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Throw/" style="font-size: 10px;">Throw</a> <a href="/tags/二十四史/" style="font-size: 17.5px;">二十四史</a> <a href="/tags/史记/" style="font-size: 15px;">史记</a> <a href="/tags/增强for循环/" style="font-size: 10px;">增强for循环</a> <a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a> <a href="/tags/字符流/" style="font-size: 10px;">字符流</a> <a href="/tags/字节流/" style="font-size: 10px;">字节流</a> <a href="/tags/工具类/" style="font-size: 10px;">工具类</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/比较器/" style="font-size: 10px;">比较器</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/符号/" style="font-size: 10px;">符号</a> <a href="/tags/适配器/" style="font-size: 10px;">适配器</a> <a href="/tags/递归练习/" style="font-size: 10px;">递归练习</a> <a href="/tags/集合类/" style="font-size: 17.5px;">集合类</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Java_Thread2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/18/Java_Thread2/" class="article-date">
+      <time datetime="2018-01-18T02:00:00.000Z" itemprop="datePublished">2018-01-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      多线程(二)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA学习/">JAVA学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多线程/">多线程</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="线程-二"><a href="#线程-二" class="headerlink" title="线程(二)"></a>线程(二)</h1><h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><ul>
+<li><p>单例设计模式：保证类在内存中只有一个对象。</p>
+</li>
+<li><p>如何保证类在内存中只有一个对象呢？</p>
+<ul>
+<li>(1)控制类的创建，不让其他类来创建本类的对象。private</li>
+<li>(2)在本类中定义一个本类的对象。Singleton s;</li>
+<li>(3)提供公共的访问方式。  public static Singleton getInstance(){return s}</li>
+</ul>
+</li>
+<li><p>单例写法三种：</p>
+<ul>
+<li><p>(1)饿汉式 开发用这种方式。—–空间换时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//饿汉式</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="comment">//1,私有构造函数</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="comment">//2,创建本类对象</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s = <span class="keyword">new</span> Singleton();</div><div class="line">	<span class="comment">//3,对外提供公共的访问方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"11111111111"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>(2)懒汉式 面试写这种方式。多线程存在隐患。—–时间换空间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//懒汉式,单例的延迟加载模式</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="comment">//1,私有构造函数</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">	<span class="comment">//2,声明一个本类的引用</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Singleton s;</div><div class="line">	<span class="comment">//3,对外提供公共的访问方法</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(s == <span class="keyword">null</span>)</div><div class="line">			<span class="comment">//线程1,线程2</span></div><div class="line">			s = <span class="keyword">new</span> Singleton();</div><div class="line">		<span class="keyword">return</span> s;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"11111111111"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>(3)第三种格式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton s = <span class="keyword">new</span> Singleton();<span class="comment">//final是最终的意思,被final修饰的变量不可以被更改</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Runtime类"><a href="#Runtime类" class="headerlink" title="Runtime类"></a>Runtime类</h2><ul>
+<li>Runtime类是一个单例类<ul>
+<li><pre><code>Runtime r = Runtime.getRuntime();
+//r.exec(&quot;shutdown -s -t 300&quot;);        //300秒后关机
+r.exec(&quot;shutdown -a&quot;);                //取消关机
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="Timer类"><a href="#Timer类" class="headerlink" title="Timer类"></a>Timer类</h2><ul>
+<li>计时器—–第一个参数是安排的任务，第二个参数是任务执行的时间，第三个参数是过多久再执行一次</li>
+</ul>
+<h2 id="两个线程间的通信"><a href="#两个线程间的通信" class="headerlink" title="两个线程间的通信"></a>两个线程间的通信</h2><ul>
+<li>1.什么时候需要通信<ul>
+<li>多个线程并发执行时, 在默认情况下CPU是随机切换线程的</li>
+<li>如果我们希望他们有规律的执行, 就可以使用通信, 例如每个线程执行一次打印</li>
+</ul>
+</li>
+<li>2.怎么通信<ul>
+<li>如果希望线程等待, 就调用wait()</li>
+<li>如果希望唤醒等待的线程, 就调用notify();</li>
+<li>这两个方法必须在同步代码中执行, 并且使用同步锁对象来调用</li>
+</ul>
+</li>
+<li>3.注意事项<ul>
+<li>在同步代码块中，用哪个对象锁，就用哪个对象调用wait()方法</li>
+<li>因为锁对象可以是任意对象，所以wait()和notify()方法定义在Object类里</li>
+<li>sleep()方法需要传入参数，时间到了自动醒来。wait()方法传入参数，代表多少时间后进入等待状态</li>
+<li>sleep方法不释放锁，wait方法释放锁</li>
+</ul>
+</li>
+</ul>
+<h2 id="三个或三个以上间的线程通信"><a href="#三个或三个以上间的线程通信" class="headerlink" title="三个或三个以上间的线程通信"></a>三个或三个以上间的线程通信</h2><ul>
+<li>多个线程通信的问题<ul>
+<li>notify()方法是随机唤醒一个线程</li>
+<li>notifyAll()方法是唤醒所有线程</li>
+<li>JDK5之前无法唤醒指定的一个线程</li>
+<li>如果多个线程之间通信, 需要使用notifyAll()通知所有线程, 用while来反复判断条件</li>
+</ul>
+</li>
+<li>注意事项<ul>
+<li>if判断是在哪里等待哪里唤醒</li>
+<li>while是循环判断，在哪里等待就在哪里判断然后唤醒</li>
+</ul>
+</li>
+</ul>
+<h2 id="JDK1-5的新特性互斥锁"><a href="#JDK1-5的新特性互斥锁" class="headerlink" title="JDK1.5的新特性互斥锁"></a>JDK1.5的新特性互斥锁</h2><ul>
+<li>1.同步<ul>
+<li>使用ReentrantLock类的lock()和unlock()方法进行同步</li>
+</ul>
+</li>
+<li>2.通信<ul>
+<li>使用ReentrantLock类的newCondition()方法可以获取Condition对象</li>
+<li>需要等待的时候使用Condition的await()方法, 唤醒的时候用signal()方法</li>
+<li>不同的线程使用不同的Condition, 这样就能区分唤醒的时候找哪个线程了</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程组的概述和使用"><a href="#线程组的概述和使用" class="headerlink" title="线程组的概述和使用"></a>线程组的概述和使用</h2><ul>
+<li>A:线程组概述<ul>
+<li>Java中使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理，Java允许程序直接对线程组进行控制。</li>
+<li>默认情况下，所有的线程都属于主线程组。<ul>
+<li>public final ThreadGroup getThreadGroup()//通过线程对象获取他所属于的组</li>
+<li>public final String getName()//通过线程组对象获取他组的名字</li>
+</ul>
+</li>
+<li>我们也可以给线程设置分组<ul>
+<li>1,ThreadGroup(String name) 创建线程组对象并给其赋值名字</li>
+<li>2,创建线程对象</li>
+<li>3,Thread(ThreadGroup?group, Runnable?target, String?name) </li>
+<li>4,设置整组的优先级或者守护线程</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程的五种状态"><a href="#线程的五种状态" class="headerlink" title="线程的五种状态"></a>线程的五种状态</h2><ul>
+<li>新建,就绪,运行,阻塞,死亡</li>
+</ul>
+<h2 id="线程池的概述和使用"><a href="#线程池的概述和使用" class="headerlink" title="线程池的概述和使用"></a>线程池的概述和使用</h2><ul>
+<li>A:线程池概述<ul>
+<li>程序启动一个新线程成本是比较高的，因为它涉及到要与操作系统进行交互。而使用线程池可以很好的提高性能，尤其是当程序中要创建大量生存期很短的线程时，更应该考虑使用线程池。线程池里的每一个线程代码结束后，并不会死亡，而是再次回到线程池中成为空闲状态，等待下一个对象来使用。在JDK5之前，我们必须手动实现自己的线程池，从JDK5开始，Java内置支持线程池</li>
+</ul>
+</li>
+<li>B:内置线程池的使用概述<ul>
+<li>JDK5新增了一个Executors工厂类来产生线程池，有如下几个方法<ul>
+<li>public static ExecutorService newFixedThreadPool(int nThreads)</li>
+<li>public static ExecutorService newSingleThreadExecutor()</li>
+<li>这些方法的返回值是ExecutorService对象，该对象表示一个线程池，可以执行Runnable对象或者Callable对象代表的线程。它提供了如下方法</li>
+<li>Future&lt;?&gt; submit(Runnable task)</li>
+<li><t> Future<t> submit(Callable<t> task)</t></t></t></li>
+</ul>
+</li>
+<li>使用步骤：<ul>
+<li>创建线程池对象</li>
+<li>创建Runnable实例</li>
+<li>提交Runnable实例</li>
+<li>关闭线程池</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="线程程序实现的方式3"><a href="#线程程序实现的方式3" class="headerlink" title="线程程序实现的方式3"></a>线程程序实现的方式3</h2><ul>
+<li>提交的是Callable</li>
+<li><p>多线程程序实现的方式3的好处和弊端</p>
+<ul>
+<li><p>好处：</p>
+<ul>
+<li>可以有返回值</li>
+<li>可以抛出异常</li>
+</ul>
+</li>
+<li><p>弊端：</p>
+<ul>
+<li>代码比较复杂，所以一般不用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="简单工厂模式概述和使用"><a href="#简单工厂模式概述和使用" class="headerlink" title="简单工厂模式概述和使用"></a>简单工厂模式概述和使用</h2><ul>
+<li>A:简单工厂模式概述<ul>
+<li>又叫静态工厂方法模式，它定义一个具体的工厂类负责创建一些类的实例</li>
+</ul>
+</li>
+<li>B:优点<ul>
+<li>客户端不需要在负责对象的创建，从而明确了各个类的职责</li>
+</ul>
+</li>
+<li>C:缺点<ul>
+<li>这个静态工厂类负责所有对象的创建，如果有新的对象增加，或者某些对象的创建方式不同，就需要不断的修改工厂类，不利于后期的维护</li>
+</ul>
+</li>
+</ul>
+<h2 id="工厂方法模式的概述和使用"><a href="#工厂方法模式的概述和使用" class="headerlink" title="工厂方法模式的概述和使用"></a>工厂方法模式的概述和使用</h2><ul>
+<li>A:工厂方法模式概述<ul>
+<li>工厂方法模式中抽象工厂类负责定义创建对象的接口，具体对象的创建工作由继承抽象工厂的具体类实现。</li>
+</ul>
+</li>
+<li>B:优点<ul>
+<li>客户端不需要在负责对象的创建，从而明确了各个类的职责，如果有新的对象增加，只需要增加一个具体的类和具体的工厂类即可，不影响已有的代码，后期维护容易，增强了系统的扩展性</li>
+</ul>
+</li>
+<li>C:缺点<ul>
+<li>需要额外的编写代码，增加了工作量</li>
+</ul>
+</li>
+</ul>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/18/Java_Thread2/">多线程(二)</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2018年01月18日 - 10时00分</p>
+        <p><span>最后更新:</span>2018年01月18日 - 13时20分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/18/Java_Thread2/" title="多线程(二)">http://yoursite.com/2018/01/18/Java_Thread2/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/18/Java_Thread2/　　作者: John Doe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/17/Java_GUI/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GUI</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#线程-二"><span class="toc-number">1.</span> <span class="toc-text">线程(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单例设计模式"><span class="toc-number">1.1.</span> <span class="toc-text">单例设计模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runtime类"><span class="toc-number">1.2.</span> <span class="toc-text">Runtime类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Timer类"><span class="toc-number">1.3.</span> <span class="toc-text">Timer类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两个线程间的通信"><span class="toc-number">1.4.</span> <span class="toc-text">两个线程间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三个或三个以上间的线程通信"><span class="toc-number">1.5.</span> <span class="toc-text">三个或三个以上间的线程通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK1-5的新特性互斥锁"><span class="toc-number">1.6.</span> <span class="toc-text">JDK1.5的新特性互斥锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程组的概述和使用"><span class="toc-number">1.7.</span> <span class="toc-text">线程组的概述和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的五种状态"><span class="toc-number">1.8.</span> <span class="toc-text">线程的五种状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池的概述和使用"><span class="toc-number">1.9.</span> <span class="toc-text">线程池的概述和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程程序实现的方式3"><span class="toc-number">1.10.</span> <span class="toc-text">线程程序实现的方式3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单工厂模式概述和使用"><span class="toc-number">1.11.</span> <span class="toc-text">简单工厂模式概述和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工厂方法模式的概述和使用"><span class="toc-number">1.12.</span> <span class="toc-text">工厂方法模式的概述和使用</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/01/17/Java_GUI/" title="下一篇: GUI">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/Java_Thread2/">多线程(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_GUI/">GUI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Thread1/">多线程(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/史记一_03/">五帝本纪三</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Exercise/">Java的一些练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream3/">IO流(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream2/">IO流(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_IOStream1/">IO流(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/史记一_02/">五帝本纪二</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_FileClass/">File类</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Exception/">异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Collection4/">集合类(四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/14/Java_Collection3/">集合类(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/史记一_01/">五帝本纪一</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/读史之始/">读史之始</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/Java_Collection2/">集合类（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_Signs/">C语言符号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_DataFormat/">C语言中的数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Java_Collection1/">集合类(一)</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

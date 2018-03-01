@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C语言符号 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C语言符号一、操作符1.基本操作符
+算数操作符
+A.包含 ：+、-、*、/、%
+B.注意：%取模要求两边都是整型数据
+
+
+位运算符
+A.包含：《、》、&amp;amp;与、|或、^异或、-非
+B.注意：移位操作符适用于整型不适用于浮点数，其中符号位被移走后会按原来的正负补符号位。 
+
+
+赋值
+包含：= 、+ - * / %= 、&amp;amp; | ^ = 、》=
+
+
+单目操作符
+包含：！非、++、–、-负、+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言符号">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/Clang_Signs/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C语言符号一、操作符1.基本操作符
+算数操作符
+A.包含 ：+、-、*、/、%
+B.注意：%取模要求两边都是整型数据
+
+
+位运算符
+A.包含：《、》、&amp;amp;与、|或、^异或、-非
+B.注意：移位操作符适用于整型不适用于浮点数，其中符号位被移走后会按原来的正负补符号位。 
+
+
+赋值
+包含：= 、+ - * / %= 、&amp;amp; | ^ = 、》=
+
+
+单目操作符
+包含：！非、++、–、-负、+">
+<meta property="og:updated_time" content="2018-01-13T01:23:06.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言符号">
+<meta name="twitter:description" content="C语言符号一、操作符1.基本操作符
+算数操作符
+A.包含 ：+、-、*、/、%
+B.注意：%取模要求两边都是整型数据
+
+
+位运算符
+A.包含：《、》、&amp;amp;与、|或、^异或、-非
+B.注意：移位操作符适用于整型不适用于浮点数，其中符号位被移走后会按原来的正负补符号位。 
+
+
+赋值
+包含：= 、+ - * / %= 、&amp;amp; | ^ = 、》=
+
+
+单目操作符
+包含：！非、++、–、-负、+">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">John Doe</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ArrayList/" style="font-size: 10px;">ArrayList</a> <a href="/tags/C/" style="font-size: 12.5px;">C</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/FilenameFilter/" style="font-size: 10px;">FilenameFilter</a> <a href="/tags/File类/" style="font-size: 10px;">File类</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/HashSet/" style="font-size: 10px;">HashSet</a> <a href="/tags/IO流其他类/" style="font-size: 10px;">IO流其他类</a> <a href="/tags/JAVA/" style="font-size: 20px;">JAVA</a> <a href="/tags/LinkedHashSet/" style="font-size: 10px;">LinkedHashSet</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Throw/" style="font-size: 10px;">Throw</a> <a href="/tags/二十四史/" style="font-size: 17.5px;">二十四史</a> <a href="/tags/史记/" style="font-size: 15px;">史记</a> <a href="/tags/增强for循环/" style="font-size: 10px;">增强for循环</a> <a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a> <a href="/tags/字符流/" style="font-size: 10px;">字符流</a> <a href="/tags/字节流/" style="font-size: 10px;">字节流</a> <a href="/tags/工具类/" style="font-size: 10px;">工具类</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/比较器/" style="font-size: 10px;">比较器</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/符号/" style="font-size: 10px;">符号</a> <a href="/tags/适配器/" style="font-size: 10px;">适配器</a> <a href="/tags/递归练习/" style="font-size: 10px;">递归练习</a> <a href="/tags/集合类/" style="font-size: 17.5px;">集合类</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Clang_Signs" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/12/Clang_Signs/" class="article-date">
+      <time datetime="2018-01-12T11:00:00.000Z" itemprop="datePublished">2018-01-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言符号
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/C语言学习/">C语言学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/符号/">符号</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="C语言符号"><a href="#C语言符号" class="headerlink" title="C语言符号"></a>C语言符号</h1><h2 id="一、操作符"><a href="#一、操作符" class="headerlink" title="一、操作符"></a>一、操作符</h2><h3 id="1-基本操作符"><a href="#1-基本操作符" class="headerlink" title="1.基本操作符"></a>1.基本操作符</h3><ul>
+<li>算数操作符<ul>
+<li>A.包含 ：+、-、*、/、%</li>
+<li>B.注意：%取模要求两边都是整型数据</li>
+</ul>
+</li>
+<li>位运算符<ul>
+<li>A.包含：《、》、&amp;与、|或、^异或、-非</li>
+<li>B.注意：移位操作符适用于整型不适用于浮点数，其中符号位被移走后会按原来的正负补符号位。 </li>
+</ul>
+</li>
+<li>赋值<ul>
+<li>包含：= 、+ - * / %= 、&amp; | ^ = 、》=</li>
+</ul>
+</li>
+<li>单目操作符<ul>
+<li>包含：！非、++、–、-负、+正、&amp;取地址、*解引用</li>
+<li>解引用：他的意思是直接去寻找指针所指的地址里面的内容，此内容可以是任何数据类型，当然也可以是指针  </li>
+</ul>
+</li>
+<li>关系操作符</li>
+<li>逻辑操作符（&amp;&amp;和||具有短路效果）</li>
+<li>条件操作符（？：）<ul>
+<li>注意：C语言里的三目运算符号后可以有操作条件表达式，JAVA只允许有改变值的操作。</li>
+</ul>
+</li>
+<li>逗号操作符<ul>
+<li>A.定义：逗号作为运算符使用时时一个双目运算符，其运算优先级是所有运算符中最低的。</li>
+<li>B.注意：a=2*6,a-4,a+15—最后的结果a=12,虽然后面的值算出来了但是没有赋值给a</li>
+<li>a=(a=5+1,a+2,a+3);最后的结果为6、8、9，a=9 </li>
+</ul>
+</li>
+</ul>
+<h3 id="2-贪心法与优先级"><a href="#2-贪心法与优先级" class="headerlink" title="2.贪心法与优先级"></a>2.贪心法与优先级</h3><ul>
+<li>贪心法<ul>
+<li>解释:每个字符应该包含更多的字符。也就是说，编译器将程序分解成符号的方法是，从左到右一个字符一个字符的读入，如果该字符可能组成一个符号，就再读入下一个字符，判断已经读入的两个字符组成的字符串是否可能是一个符号的组成部分；如果可能，继续读入下一个字符，重复上述判断，直到读入的字符组成的字符串不再可能组成一个有意义的符号。这种处理方法，又称为“贪心法”，或者“大嘴法””。</li>
+<li>例子：temp = a—b；等价于temp = （a–）-b</li>
+</ul>
+</li>
+<li>优先级<ul>
+<li>口诀：括号成员第一;<a href=""></a> 成员运算符.  -&gt;<pre><code>全体单目第二;++、 --、 +(正)、 -(负) 、指针运算*、&amp;
+乘除余三,加减四;
+移位五，关系六; &lt;&lt; &gt;&gt; ，关系：&gt; &lt; &gt;= &lt;=
+等于(与)不等排第七;即== 和!=
+位与异或和位或;位与(&amp;)异或(^)位或(|)    
+三分天下&quot;八九十;  
+逻辑或跟与;逻辑运算符:|| 和 &amp;&amp;
+十二和十一;优先级(||)  底于 优先级(&amp;&amp;) 
+条件高于赋值, 三目运算符优先级排到13 位只比赋值运算符和&quot;,&quot;高
+逗号运算级最低!
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="二、表达式求值"><a href="#二、表达式求值" class="headerlink" title="二、表达式求值"></a>二、表达式求值</h2><h3 id="1-隐式类型转换"><a href="#1-隐式类型转换" class="headerlink" title="1.隐式类型转换"></a>1.隐式类型转换</h3><ul>
+<li>C在以下四种情况下会进行隐式转换:<ul>
+<li>1、算术运算式中，低类型能够转换为高类型。</li>
+<li>2、赋值表达式中，右边表达式的值自动隐式转换为左边变量的类型，并赋值给他。</li>
+<li>3、函数调用中参数传递时，系统隐式地将实参转换为形参的类型后，赋给形参。</li>
+<li>4、函数有返回值时，系统将隐式地将返回表达式类型转换为返回值类型，赋值给调用函数。 </li>
+</ul>
+</li>
+<li>有符号数与无符号数之间运算问题：<ul>
+<li>当表达式中存在有符号类型和无符号类型时所有的操作数都自动转换为无符号类型</li>
+</ul>
+</li>
+</ul>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/12/Clang_Signs/">C语言符号</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2018年01月12日 - 19时00分</p>
+        <p><span>最后更新:</span>2018年01月13日 - 09时23分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/12/Clang_Signs/" title="C语言符号">http://yoursite.com/2018/01/12/Clang_Signs/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/12/Clang_Signs/　　作者: John Doe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/01/13/Java_Collection2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          集合类（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/12/Clang_DataFormat/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C语言中的数据类型</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C语言符号"><span class="toc-number">1.</span> <span class="toc-text">C语言符号</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、操作符"><span class="toc-number">1.1.</span> <span class="toc-text">一、操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-基本操作符"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.基本操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-贪心法与优先级"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.贪心法与优先级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、表达式求值"><span class="toc-number">1.2.</span> <span class="toc-text">二、表达式求值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-隐式类型转换"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.隐式类型转换</span></a></li></ol></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/01/13/Java_Collection2/" title="上一篇: 集合类（二）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/01/12/Clang_DataFormat/" title="下一篇: C语言中的数据类型">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/Java_Thread2/">多线程(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_GUI/">GUI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Thread1/">多线程(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/史记一_03/">五帝本纪三</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Exercise/">Java的一些练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream3/">IO流(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream2/">IO流(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_IOStream1/">IO流(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/史记一_02/">五帝本纪二</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_FileClass/">File类</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Exception/">异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Collection4/">集合类(四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/14/Java_Collection3/">集合类(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/史记一_01/">五帝本纪一</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/读史之始/">读史之始</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/Java_Collection2/">集合类（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_Signs/">C语言符号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_DataFormat/">C语言中的数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Java_Collection1/">集合类(一)</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

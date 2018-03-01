@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>集合类(四) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="集合类(四)一.Map集合概述和特点Map接口概述
+将键映射到值的对象
+一个映射不能包含重复的键
+每个键最多只能映射到一个值
+
+Map接口和Collection接口的不同
+Map是双列的,Collection是单列的
+Map的键唯一,Collection的子体系Set是唯一的
+Map集合的数据结构值针对键有效，跟值无关;Collection集合的数据结构是针对元素有效
+
+Map集合的功能概述
+a:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集合类(四)">
+<meta property="og:url" content="http://yoursite.com/2018/01/15/Java_Collection4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="集合类(四)一.Map集合概述和特点Map接口概述
+将键映射到值的对象
+一个映射不能包含重复的键
+每个键最多只能映射到一个值
+
+Map接口和Collection接口的不同
+Map是双列的,Collection是单列的
+Map的键唯一,Collection的子体系Set是唯一的
+Map集合的数据结构值针对键有效，跟值无关;Collection集合的数据结构是针对元素有效
+
+Map集合的功能概述
+a:">
+<meta property="og:updated_time" content="2018-01-15T03:48:42.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集合类(四)">
+<meta name="twitter:description" content="集合类(四)一.Map集合概述和特点Map接口概述
+将键映射到值的对象
+一个映射不能包含重复的键
+每个键最多只能映射到一个值
+
+Map接口和Collection接口的不同
+Map是双列的,Collection是单列的
+Map的键唯一,Collection的子体系Set是唯一的
+Map集合的数据结构值针对键有效，跟值无关;Collection集合的数据结构是针对元素有效
+
+Map集合的功能概述
+a:">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">John Doe</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ArrayList/" style="font-size: 10px;">ArrayList</a> <a href="/tags/C/" style="font-size: 12.5px;">C</a> <a href="/tags/Exception/" style="font-size: 10px;">Exception</a> <a href="/tags/FilenameFilter/" style="font-size: 10px;">FilenameFilter</a> <a href="/tags/File类/" style="font-size: 10px;">File类</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/HashSet/" style="font-size: 10px;">HashSet</a> <a href="/tags/IO流其他类/" style="font-size: 10px;">IO流其他类</a> <a href="/tags/JAVA/" style="font-size: 20px;">JAVA</a> <a href="/tags/LinkedHashSet/" style="font-size: 10px;">LinkedHashSet</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Map/" style="font-size: 10px;">Map</a> <a href="/tags/Throw/" style="font-size: 10px;">Throw</a> <a href="/tags/二十四史/" style="font-size: 17.5px;">二十四史</a> <a href="/tags/史记/" style="font-size: 15px;">史记</a> <a href="/tags/增强for循环/" style="font-size: 10px;">增强for循环</a> <a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a> <a href="/tags/字符流/" style="font-size: 10px;">字符流</a> <a href="/tags/字节流/" style="font-size: 10px;">字节流</a> <a href="/tags/工具类/" style="font-size: 10px;">工具类</a> <a href="/tags/数据类型/" style="font-size: 10px;">数据类型</a> <a href="/tags/比较器/" style="font-size: 10px;">比较器</a> <a href="/tags/泛型/" style="font-size: 10px;">泛型</a> <a href="/tags/符号/" style="font-size: 10px;">符号</a> <a href="/tags/适配器/" style="font-size: 10px;">适配器</a> <a href="/tags/递归练习/" style="font-size: 10px;">递归练习</a> <a href="/tags/集合类/" style="font-size: 17.5px;">集合类</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">John Doe</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">John Doe</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Java_Collection4" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/15/Java_Collection4/" class="article-date">
+      <time datetime="2018-01-15T00:00:00.000Z" itemprop="datePublished">2018-01-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      集合类(四)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/JAVA学习/">JAVA学习</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVA/">JAVA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Map/">Map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具类/">工具类</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/集合类/">集合类</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="集合类-四"><a href="#集合类-四" class="headerlink" title="集合类(四)"></a>集合类(四)</h1><h2 id="一-Map集合概述和特点"><a href="#一-Map集合概述和特点" class="headerlink" title="一.Map集合概述和特点"></a>一.Map集合概述和特点</h2><h3 id="Map接口概述"><a href="#Map接口概述" class="headerlink" title="Map接口概述"></a>Map接口概述</h3><ul>
+<li>将键映射到值的对象</li>
+<li>一个映射不能包含重复的键</li>
+<li>每个键最多只能映射到一个值</li>
+</ul>
+<h3 id="Map接口和Collection接口的不同"><a href="#Map接口和Collection接口的不同" class="headerlink" title="Map接口和Collection接口的不同"></a>Map接口和Collection接口的不同</h3><ul>
+<li>Map是双列的,Collection是单列的</li>
+<li>Map的键唯一,Collection的子体系Set是唯一的</li>
+<li>Map集合的数据结构值针对键有效，跟值无关;Collection集合的数据结构是针对元素有效</li>
+</ul>
+<h3 id="Map集合的功能概述"><a href="#Map集合的功能概述" class="headerlink" title="Map集合的功能概述"></a>Map集合的功能概述</h3><ul>
+<li>a:添加功能<ul>
+<li>V put(K key,V value):添加元素。<ul>
+<li>如果键是第一次存储，就直接存储元素，返回null</li>
+<li>如果键不是第一次存在，就用值把以前的值替换掉，返回以前的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>b:删除功能<ul>
+<li>void clear():移除所有的键值对元素</li>
+<li>V remove(Object key)：根据键删除键值对元素，并把值返回</li>
+</ul>
+</li>
+<li>c:判断功能<ul>
+<li>boolean containsKey(Object key)：判断集合是否包含指定的键</li>
+<li>boolean containsValue(Object value):判断集合是否包含指定的值</li>
+<li>boolean isEmpty()：判断集合是否为空</li>
+</ul>
+</li>
+<li>d:获取功能<ul>
+<li>Set<map.entry<k,v>&gt; entrySet():</map.entry<k,v></li>
+<li>V get(Object key):根据键获取值</li>
+<li>Set<k> keySet():获取集合中所有键的集合</k></li>
+<li>Collection<v> values():获取集合中所有值的集合·······················</v></li>
+</ul>
+</li>
+<li>e:长度功能<ul>
+<li>int size()：返回集合中的键值对的个数</li>
+</ul>
+</li>
+</ul>
+<h3 id="Map集合的遍历之键找值"><a href="#Map集合的遍历之键找值" class="headerlink" title="Map集合的遍历之键找值"></a>Map集合的遍历之键找值</h3><ul>
+<li>A:键找值思路：<ul>
+<li>获取所有键的集合</li>
+<li>遍历键的集合，获取到每一个键</li>
+<li>根据键找值</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>Map集合的遍历之键找值</p>
+<pre><code>HashMap&lt;String, Integer&gt; hm = new HashMap&lt;&gt;();
+hm.put(&quot;张三&quot;, 23);
+hm.put(&quot;李四&quot;, 24);
+hm.put(&quot;王五&quot;, 25);
+hm.put(&quot;赵六&quot;, 26);
+
+/*Set&lt;String&gt; keySet = hm.keySet();            //获取集合中所有的键
+Iterator&lt;String&gt; it = keySet.iterator();    //获取迭代器
+while(it.hasNext()) {                        //判断单列集合中是否有元素
+    String key = it.next();                    //获取集合中的每一个元素,其实就是双列集合中的键
+    Integer value = hm.get(key);            //根据键获取值
+    System.out.println(key + &quot;=&quot; + value);    //打印键值对
+}*/
+
+for(String key : hm.keySet()) {                //增强for循环迭代双列集合第一种方式
+    System.out.println(key + &quot;=&quot; + hm.get(key));
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="Map集合的遍历之键值对对象找键和值"><a href="#Map集合的遍历之键值对对象找键和值" class="headerlink" title="Map集合的遍历之键值对对象找键和值"></a>Map集合的遍历之键值对对象找键和值</h3><ul>
+<li>A:键值对对象找键和值思路：<ul>
+<li>获取所有键值对对象的集合</li>
+<li>遍历键值对对象的集合，获取到每一个键值对对象</li>
+<li>根据键值对对象找键和值</li>
+</ul>
+</li>
+<li><p>B:案例演示</p>
+<ul>
+<li><p>Map集合的遍历之键值对对象找键和值</p>
+<pre><code>HashMap&lt;String, Integer&gt; hm = new HashMap&lt;&gt;();
+hm.put(&quot;张三&quot;, 23);
+hm.put(&quot;李四&quot;, 24);
+hm.put(&quot;王五&quot;, 25);
+hm.put(&quot;赵六&quot;, 26);
+/*Set&lt;Map.Entry&lt;String, Integer&gt;&gt; entrySet = hm.entrySet();    //获取所有的键值对象的集合
+Iterator&lt;Entry&lt;String, Integer&gt;&gt; it = entrySet.iterator();//获取迭代器
+while(it.hasNext()) {
+    Entry&lt;String, Integer&gt; en = it.next();                //获取键值对对象
+    String key = en.getKey();                                //根据键值对对象获取键
+    Integer value = en.getValue();                            //根据键值对对象获取值
+    System.out.println(key + &quot;=&quot; + value);
+}*/
+
+for(Entry&lt;String,Integer&gt; en : hm.entrySet()) {
+    System.out.println(en.getKey() + &quot;=&quot; + en.getValue());
+}
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="二-HashMap和Hashtable的区别"><a href="#二-HashMap和Hashtable的区别" class="headerlink" title="二.HashMap和Hashtable的区别"></a>二.HashMap和Hashtable的区别</h2><ul>
+<li>HashMap和Hashtable的区别<ul>
+<li>Hashtable是JDK1.0版本出现的,是线程安全的,效率低,HashMap是JDK1.2版本出现的,是线程不安全的,效率高</li>
+<li>Hashtable不可以存储null键和null值,HashMap可以存储null键和null值</li>
+</ul>
+</li>
+<li>共同点<br>  <em>都是双列集合
+  </em>底层都是Hash算法</li>
+</ul>
+<h2 id="三-Colletions集合工具类"><a href="#三-Colletions集合工具类" class="headerlink" title="三.Colletions集合工具类"></a>三.Colletions集合工具类</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>util包下，所有方法都用static修饰，构造方法被私有</li>
+</ul>
+<h3 id="成员方法"><a href="#成员方法" class="headerlink" title="成员方法"></a>成员方法</h3><pre><code>public static &lt;T&gt; void sort(List&lt;T&gt; list)
+public static &lt;T&gt; int binarySearch(List&lt;?&gt; list,T key)
+public static &lt;T&gt; T max(Collection&lt;?&gt; coll)
+public static void reverse(List&lt;?&gt; list)
+public static void shuffle(List&lt;?&gt; list)
+</code></pre><h2 id="四-泛型固定边界"><a href="#四-泛型固定边界" class="headerlink" title="四.泛型固定边界"></a>四.泛型固定边界</h2><ul>
+<li>? super E—–放入一个方法中，实质是父类引用指向子类对象</li>
+<li>? extend E—–放入一个集合里，实质也是父类引用指向子类对象</li>
+</ul>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/01/15/Java_Collection4/">集合类(四)</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 John Doe 的个人博客">John Doe</a></p>
+        <p><span>发布时间:</span>2018年01月15日 - 08时00分</p>
+        <p><span>最后更新:</span>2018年01月15日 - 11时48分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/15/Java_Collection4/" title="集合类(四)">http://yoursite.com/2018/01/15/Java_Collection4/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/01/15/Java_Collection4/　　作者: John Doe" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/01/15/Java_Exception/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          异常
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/14/Java_Collection3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">集合类(三)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#集合类-四"><span class="toc-number">1.</span> <span class="toc-text">集合类(四)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-Map集合概述和特点"><span class="toc-number">1.1.</span> <span class="toc-text">一.Map集合概述和特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Map接口概述"><span class="toc-number">1.1.1.</span> <span class="toc-text">Map接口概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map接口和Collection接口的不同"><span class="toc-number">1.1.2.</span> <span class="toc-text">Map接口和Collection接口的不同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map集合的功能概述"><span class="toc-number">1.1.3.</span> <span class="toc-text">Map集合的功能概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map集合的遍历之键找值"><span class="toc-number">1.1.4.</span> <span class="toc-text">Map集合的遍历之键找值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map集合的遍历之键值对对象找键和值"><span class="toc-number">1.1.5.</span> <span class="toc-text">Map集合的遍历之键值对对象找键和值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-HashMap和Hashtable的区别"><span class="toc-number">1.2.</span> <span class="toc-text">二.HashMap和Hashtable的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Colletions集合工具类"><span class="toc-number">1.3.</span> <span class="toc-text">三.Colletions集合工具类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员方法"><span class="toc-number">1.3.2.</span> <span class="toc-text">成员方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-泛型固定边界"><span class="toc-number">1.4.</span> <span class="toc-text">四.泛型固定边界</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/01/15/Java_Exception/" title="上一篇: 异常">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/01/14/Java_Collection3/" title="下一篇: 集合类(三)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/01/18/Java_Thread2/">多线程(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_GUI/">GUI</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Thread1/">多线程(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/史记一_03/">五帝本纪三</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/17/Java_Exercise/">Java的一些练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream3/">IO流(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/16/Java_IOStream2/">IO流(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_IOStream1/">IO流(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/史记一_02/">五帝本纪二</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_FileClass/">File类</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Exception/">异常</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/15/Java_Collection4/">集合类(四)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/14/Java_Collection3/">集合类(三)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/史记一_01/">五帝本纪一</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/读史之始/">读史之始</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/Java_Collection2/">集合类（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_Signs/">C语言符号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Clang_DataFormat/">C语言中的数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/12/Java_Collection1/">集合类(一)</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2018 John Doe
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
